@@ -1,0 +1,51 @@
+# ------------------------------
+# Dependencies
+# ------------------------------
+node_modules/
+
+# ------------------------------
+# Build output (Vite)
+# ------------------------------
+dist/
+.vite/
+
+# ------------------------------
+# Environment variables
+# ------------------------------
+.env
+.env.*
+!.env.example
+
+# ------------------------------
+# Logs
+# ------------------------------
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.log
+
+# ------------------------------
+# Editor / IDE
+# ------------------------------
+
+# Neovim / Vim
+*.swp
+*.swo
+*~
+.Session.vim
+
+# VSCode (in case you ever use it)
+.vscode/
+
+# ------------------------------
+# OS files (Linux + general)
+# ------------------------------
+.DS_Store
+Thumbs.db
+
+# ------------------------------
+# Misc
+# ------------------------------
+coverage/
+.cache/
