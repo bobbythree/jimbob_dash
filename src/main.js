@@ -45,7 +45,13 @@ function drawGrass() {
 }
 
 function drawPlayer() {
-  ctx.drawImage(jimbob, playerObj.x, playerObj.y)
+  ctx.drawImage(
+    jimbob,
+    playerObj.x,
+    playerObj.y,
+    playerObj.width,
+    playerObj.height
+  );
 }
 
 function drawWoodSpike() {
@@ -53,11 +59,35 @@ function drawWoodSpike() {
 }
 
 function checkCollision() {
-  if ((playerObj.x + playerObj.width) == woodSpikeObj.x) {
+  // player hitbox (trimmed)
+  const playerPaddingX = 30;
+  const playerPaddingTop = 40;
+  const playerPaddingBottom = 20;
+
+  const playerLeft = playerObj.x + playerPaddingX;
+  const playerRight = playerObj.x + playerObj.width - playerPaddingX;
+  const playerTop = playerObj.y + playerPaddingTop;
+  const playerBottom = playerObj.y + playerObj.height - playerPaddingBottom;
+
+  // spike hitbox (already trimmed)
+  const spikePaddingX = 15;
+  const spikePaddingY = 15;
+
+  const spikeLeft = woodSpikeObj.x + spikePaddingX;
+  const spikeRight = woodSpikeObj.x + woodSpikeObj.width - spikePaddingX;
+  const spikeTop = woodSpikeObj.y + spikePaddingY;
+  const spikeBottom = woodSpikeObj.y + woodSpikeObj.height;
+
+  const isColliding =
+    playerRight > spikeLeft &&
+    playerLeft < spikeRight &&
+    playerBottom > spikeTop &&
+    playerTop < spikeBottom;
+
+  if (isColliding) {
     isGameOver = true;
   }
 }
-
 // update funcs
 function updateWoodSpike() {
   woodSpikeObj.x -= 5;
@@ -85,6 +115,7 @@ function updatePlayer() {
   }
 }
 
+// player controls
 window.addEventListener("keydown", handleKeydown);
 
 function handleKeydown(e) {
@@ -99,7 +130,6 @@ function playerJump() {
   jumpStartY = playerObj.y;
 }
 
-// player controls
 
 
 
